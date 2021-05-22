@@ -1,0 +1,32 @@
+<ion-header color="warning">
+  <div class="login-header ion-padding">
+    <img class="login-img" src="./assets/icon/favicon.png">
+
+  </div>
+</ion-header>
+
+<ion-content class="">
+  <div class="ion-padding">
+  <form action="" methode="post">
+  <div class="form">
+    
+  <div title-form>
+    <h1 title1-form><b>LOGIN</b></h1>
+  </div>
+  <div>
+    <ion-item class="input" style="background: whitesmoke;" >
+      <ion-icon name="person"></ion-icon>
+      <ion-input  name='nom' [(ngModel)]="log.user" placeholder="username" type="text"required></ion-input>
+    </ion-item>
+    <ion-item class="input">
+      <ion-icon name="lock-closed-sharp"></ion-icon>
+      <ion-input  name='password' [(ngModel)]="log.pass" placeholder="password" type="password" required="true" ></ion-input>
+    {{res}}</ion-item>
+    
+    <ion-button (click)="add(log)" expand="block" color="success" shape="round" size="large" round>connection</ion-button>
+  </div>
+</div>
+</form>
+</div>
+</ion-content>
+

@@ -1,0 +1,7 @@
+{
+  "name": "aggrobusiness",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
