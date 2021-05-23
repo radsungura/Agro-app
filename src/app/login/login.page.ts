@@ -11,16 +11,29 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 })
 export class LoginPage implements OnInit {
   log: any;
+  inf: any;
+  users: any;
 
   constructor(public afAuth: AngularFireAuthModule , public afDB: AngularFireDatabase, private router: Router, public navCtrl: NavController  ){
-    this.log = {}
+    this.log = {},
+    this.inf = {}
     }
-    add(log){
-      this.afDB.list('User/').push({
-          'nom' :log.user,
-          'password' :log.pass
+      add(log) {
+      let v = false;
+        this.inf = this.afDB.list('/User').valueChanges();
+        this.inf.subscribe( valueOfItems => {
+          for (let i = 0; i < valueOfItems.length; i++) {
+            const element = valueOfItems[i];
+            if (log.user === element.user.email) {
+              this.router.navigate(['/listprod']);
+              window.sessionStorage.session = element.item.user ;
+              localStorage.setItem('token', element.item.user);
+              v = true;
+            }}
+          if (!v){ alert('nom d utilisateur ou mot de passe incorrect'); }
+  
+      })
       }
-      );}
       show(log){
         const res = this.log;
         }

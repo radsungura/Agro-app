@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="success" >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/addprod"></ion-back-button>
+    </ion-buttons>
+    <ion-title>produits</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+
+      
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button >
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar (ionInput)="list()" [(ngModel)]="filt" showCancelButton="focus"></ion-searchbar>
+  <h2>&nbsp;&nbsp;&nbsp;Voici la Liste des s.</h2>
+      <ion-list ion-padding *ngFor="let arti of prod | async">
+        <ion-item    slot="start">
+            <ion-thumbnail slot="start">
+              <img src="./assets/agro/pomme1.jpg" />
+            </ion-thumbnail>
+            <ion-label>
+              <h2><strong>{{arti.article | uppercase}}</strong></h2>
+              <p>{{arti.desc}}</p>
+              <p>{{arti.prix}}FBU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon name="heart" color="danger"></ion-icon>17</p>
+            </ion-label>
+            <ion-button color="success" slot="end"  type="submit" value="ok" shape="round">Buy</ion-button>
+          </ion-item>
+      </ion-list>
+      <ion-list ion-padding *ngFor="let arti of inf | async">
+        <ion-item    slot="start">
+            <ion-thumbnail slot="start">
+              <img src="./assets/agro/pomme1.jpg" />
+            </ion-thumbnail>
+            <ion-label>
+              <h2><strong>{{arti.prod.article | uppercase}}</strong></h2>
+              <p>{{arti.prod.desc}}</p>
+              <p>{{arti.prod.prix}}FBU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon name="heart" color="danger"></ion-icon>17</p>
+            </ion-label>
+            <ion-button color="success" slot="end"  type="submit" value="ok" shape="round">Buy</ion-button>
+          </ion-item>
+      </ion-list>
+      <ion-fab  vertical="bottom" horizontal="end" slot="fixed" >
+        <ion-fab-button color="success" >
+          <div >
+            cart
+          </div>
+          <ion-icon name="cart" class="cart-icon"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+  
+</ion-content>

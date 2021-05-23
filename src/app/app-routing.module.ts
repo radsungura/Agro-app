@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: '/listprod',
     pathMatch: 'full'
   },
   {
@@ -14,7 +14,20 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  }
+  },
+  {
+    path: 'addprod',
+    loadChildren: () => import('./addprod/addprod.module').then( m => m.AddprodPageModule)
+  },
+  {
+    path: 'listprod',
+    loadChildren: () => import('./listprod/listprod.module').then( m => m.ListprodPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  
 ];
 
 @NgModule({

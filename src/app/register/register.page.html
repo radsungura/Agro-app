@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="success" >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Compte</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+      
+      
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button >
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <div id="form" >
+    <ion-item transparence>
+      <ion-label >Nom</ion-label>
+      <ion-input name='nom' [(ngModel)]="user.name" placeholder="nom" type="text"></ion-input>
+    </ion-item>
+    <ion-item transparence>
+      <ion-label >Prenom</ion-label>
+      <ion-input name='prenom' [(ngModel)]="user.prenom" placeholder="prenom" type="text"></ion-input>
+    </ion-item>
+    <ion-item transparence>
+      <ion-label >E-mail</ion-label>
+      <ion-input name='email' [(ngModel)]="user.email" placeholder="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item transparence>
+      <ion-label >Tel</ion-label>
+      <ion-input name='tel' [(ngModel)]="user.tel" placeholder="tel" type="tel"></ion-input>
+    </ion-item>
+    <ion-item transparence>
+      <ion-label >CNI</ion-label>
+      <ion-input name='cni' [(ngModel)]="user.cni" placeholder="cni" type="text"></ion-input>
+    </ion-item>
+    <ion-item transparence>
+      <ion-label >Province</ion-label>
+      <ion-input name='province' [(ngModel)]="user.province" placeholder="province" type="text"></ion-input>
+    </ion-item>
+    <ion-item transparence>
+      <ion-label >Adress</ion-label>
+      <ion-input name='adress' [(ngModel)]="user.adress" placeholder="province,commune,quartier,avenue,n°" type="text"></ion-input>
+    </ion-item>
+    
+    <ion-item transparence>
+      <ion-label >Nom d' utilisateur</ion-label>
+      <ion-input name='password' [(ngModel)]="user.user" placeholder="utilisateur" type="text"></ion-input>
+      <ion-input type="hidden" *ngIf="info"  >
+        <ion-item type="hidden" *ngFor="let item of info">
+          <ion-input type="hidden" *ngIf="item.item.user===user.user; then msg"></ion-input>
+        </ion-item>
+      </ion-input>
+    </ion-item>
+    <ion-item transparence>
+      <ion-label >Mot de pass</ion-label>
+      <ion-input name='password'  [(ngModel)]="user.pass" placeholder="password" type="password"></ion-input>
+    </ion-item>
+    
+    <ion-item transparence>
+      
+      
+      <ion-label  >Comfirmé le mot de pass</ion-label>
+      <ion-input name='conf' [(ngModel)]="user.conf" 
+        placeholder="confirm" type="password"  ></ion-input>
+        <ion-input type="hidden" *ngIf="user.conf" >
+            <ion-input color="red" type="hidden" *ngIf="user.pass!==user.conf; then thenTemplate"></ion-input>
+        </ion-input>
+        
+    </ion-item>
+    
+    <ion-button (click)="creatuser(user)" expand="block" color="success" shape="round" size="large" round>Creer</ion-button>
+  </div>
+  <ng-template color="red" #thenTemplate>
+  <p >pass icoreect</p>
+  </ng-template>
+  <ng-template #conf>
+    conf good
+    </ng-template>
+  
+  <ng-template #msg>
+    le nom existe deja!
+    </ng-template>
+  
+  </form>
+
+</ion-content>
+

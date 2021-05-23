@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="success" >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/listprod"></ion-back-button>
+    </ion-buttons>
+    <ion-title>register</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+
+      
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button >
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form class="form"  action="" methode="post">
+    
+      <ion-item >
+        <ion-label position="floating">Article</ion-label>
+        
+        <ion-input name="Article" [(ngModel)]="prod.article" type="text"></ion-input>
+      </ion-item>
+      <ion-item transparence>
+        <ion-label position="floating">Quantite</ion-label>
+        <ion-input name="qty"[(ngModel)]="prod.qty" type="text"></ion-input>
+      </ion-item>
+      <ion-item transparence>
+        <ion-label position="floating">Description</ion-label>
+        <ion-input name="desc"[(ngModel)]="prod.desc" type="text"></ion-input>
+      </ion-item>
+      <ion-item transparence>
+        <ion-label position="floating">Categorie</ion-label>
+        <ion-select name="categorie"[(ngModel)]="prod.cat" type="text">
+        <ion-select-option *ngFor="let cate of cat">{{cate}}</ion-select-option>
+        <ion-select-option >fruit</ion-select-option>
+          <ion-select-option >legume</ion-select-option>
+          <ion-select-option >cereale</ion-select-option>
+          <ion-select-option >tubercul</ion-select-option>
+          <ion-select-option >boucherie</ion-select-option>
+          <ion-select-option >farine</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item transparence>
+        <ion-label position="floating">Prix</ion-label>
+        <ion-input name="prix"[(ngModel)]="prod.prix" type="number"></ion-input>
+      </ion-item>
+      <ion-item transparence>
+        <ion-label>Date de Recolte</ion-label>
+        <ion-input name="particul"[(ngModel)]="prod.part" type="date"></ion-input>
+      </ion-item>
+      <ion-item transparence>
+        <ion-label position="floating" >Etat</ion-label>
+        <ion-select name="etat"[(ngModel)]="prod.etat" type="text">
+          <ion-select-option >Tres bon</ion-select-option>
+          <ion-select-option >Bon</ion-select-option>
+          <ion-select-option >Mauvais</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item transparence>
+        <ion-label position="floating">Adress</ion-label>
+        <ion-input name="adress"[(ngModel)]="prod.adress" type="text"></ion-input>
+      </ion-item>
+      <ion-item transparence>
+        <ion-label>Photo</ion-label>
+        <ion-input name="photo"[(ngModel)]="prod.photo" type="file"></ion-input>
+      </ion-item>
+      
+      
+      <ion-button (click)="addprod(prod)" type="submit" color="success"
+       class="ion-button-class" shape="round" size="large" expand="block">Creer</ion-button>
+    
+  </form>
+  </ion-card>
+</ion-content>
