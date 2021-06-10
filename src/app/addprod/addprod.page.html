@@ -21,7 +21,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <!-- <ion-card>
     <form class="form"  action="" methode="post">
     
       <ion-item >
@@ -71,13 +71,61 @@
       </ion-item>
       <ion-item transparence>
         <ion-label>Photo</ion-label>
-        <ion-input name="photo"[(ngModel)]="prod.photo" type="file"></ion-input>
+        <ion-input type="file" name="photo" (change)="choseFile($event)"></ion-input>
       </ion-item>
-      
-      
-      <ion-button (click)="addprod(prod)" type="submit" color="success"
+      <ion-item transparence>
+        <ion-label>name</ion-label>
+        <ion-input type="text" name="nom" [(ngModel)]="newTodo" ></ion-input>
+      </ion-item>
+      <ion-button (click)="addfile()" type="submit" color="success"
        class="ion-button-class" shape="round" size="large" expand="block">Creer</ion-button>
     
   </form>
+</ion-card> -->
+
+
+  <ion-card>
+    <ion-card-header>
+    IMAGE
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="./assets/agro/pomme1.jpg" />
+        </ion-thumbnail>
+      <ion-label> pomme</ion-label>
+      <ion-button slot="end" fill="clear" color="danger" (click)="remove(item)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+      <ion-item *ngFor="let item of items | async">
+        <ion-thumbnail *ngIf="item.imageUrl">
+          <img [src]="item.imageUrl" alt="photo">
+        </ion-thumbnail>
+        <ion-label>{{ item.title }}</ion-label>
+        <ion-button slot="end" (click)="remove(item)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    </ion-card-content>
   </ion-card>
+<form (submit)="creatuser(info)">
+  <ion-item >
+    <ion-label>name</ion-label>
+    <ion-input type="text" name="nom" [(ngModel)]="info.user" ></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label>Photo</ion-label>
+    <ion-input type="file" name="photo" [(ngModel)]="info.img" ></ion-input>
+  </ion-item>
+  <ion-button type="submit" color="success" (click)="creatuser(info)"
+   class="ion-button-class" shape="round" size="large" expand="block">Creer</ion-button>
+
+</form>
 </ion-content>
+
+
+
+

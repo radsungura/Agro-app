@@ -16,21 +16,21 @@
         <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
       </ion-button>
     </ion-buttons>
-    
+    <ion-button (click)="logout()" expand="block"    >logout</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <ion-searchbar (ionInput)="list()" [(ngModel)]="filt" showCancelButton="focus"></ion-searchbar>
-  <h2>&nbsp;&nbsp;&nbsp;Voici la Liste des s.</h2>
+  <h2>&nbsp;&nbsp;&nbsp;Voici la Liste des produits.</h2>
       <ion-list ion-padding *ngFor="let arti of prod | async">
         <ion-item    slot="start">
             <ion-thumbnail slot="start">
               <img src="./assets/agro/pomme1.jpg" />
             </ion-thumbnail>
             <ion-label>
-              <h2><strong>{{arti.article | uppercase}}</strong></h2>
+              <h2><strong>{{ arti.article | uppercase}}</strong></h2>
               <p>{{arti.desc}}</p>
               <p>{{arti.prix}}FBU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon name="heart" color="danger"></ion-icon>17</p>
             </ion-label>
@@ -58,5 +58,21 @@
           <ion-icon name="cart" class="cart-icon"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-  
+  <div>
+    <ion-button (click)="getimage()" expand="block" >get product</ion-button>
+
+    <ion-list *ngFor="let image of fil">
+      <ion-item    slot="start">
+        <ion-thumbnail slot="start">
+          <ion-img [src]="image.url" ></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h2><strong>{{ image.name | uppercase}}</strong></h2>
+          <p>{{image.name}}</p>
+          <p>{{image.full}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <ion-icon name="heart" color="danger"></ion-icon>17</p>
+        </ion-label>
+        <ion-button color="success" slot="end"  type="submit" value="ok" shape="round">Buy</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

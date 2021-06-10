@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class RegisterPage implements OnInit {
 public user : any;
-  constructor(public afDB: AngularFireDatabase) { 
+  constructor(public router: Router,public afDB: AngularFireDatabase) { 
     this.user = {}
   }
   creatuser(user){
@@ -18,7 +19,10 @@ public user : any;
         'created' : date,
         user
     }
-    );}
+    );
+    this.router.navigate(['/login']);
+
+  }
   ngOnInit() {
   }
 

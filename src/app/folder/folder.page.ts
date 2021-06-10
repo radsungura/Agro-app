@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { FirebaseAuthService } from '../services/firebase-auth.service';
 
 @Component({
   selector: 'app-folder',
@@ -13,7 +14,9 @@ export class FolderPage implements OnInit {
   public inf: any;
   public user: any;
   public pass: any;
-  constructor(public afDB: AngularFireDatabase,private activatedRoute: ActivatedRoute) {
+  
+  constructor(public firebaseAuthService: FirebaseAuthService, public afDB: AngularFireDatabase,private activatedRoute: ActivatedRoute) {
+    this.user = {},
     this.info = {}
     this.inf = afDB.list('/User',  ref => ref.orderByChild('password').equalTo('dido')).valueChanges();
     this.inf.subscribe( valueOfItems => {
@@ -24,6 +27,16 @@ export class FolderPage implements OnInit {
     this.inf.subscribe( valueOfItems => {
       console.log(valueOfItems);
   })
+  }
+
+  onSubmit(user) {
+    if (user) {
+      console.log(user.value);
+      this.firebaseAuthService.emailSignup(
+        user.email,
+        user.password
+      );
+    }
   }
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');

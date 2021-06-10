@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profil</ion-title>
+    <ion-button (click)="signOut()">Sign Out</ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>
+      <ion-list>
+        <ion-item>
+          Nom : {{user?.displayName}}
+        </ion-item>
+        <ion-item>
+          Email : {{user?.email}}        </ion-item>
+      </ion-list>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+   
+    <app-photos-upload></app-photos-upload>
+    <app-photos-list></app-photos-list>
+    <ion-button (click)="getuser">
+      get user
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+</ion-content>

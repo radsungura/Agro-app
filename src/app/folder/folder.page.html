@@ -11,19 +11,23 @@
   <div class="form">
     
   <div title-form>
-    <h1 title1-form><b>LOGIN</b></h1>
+    <h1 title1-form><b>Register</b></h1>
   </div>
   <div>
+    <form #formData='ngForm' (ngSubmit)="onSubmit(user)">
+
     <ion-item class="input" style="background: whitesmoke;" >
       <ion-icon name="person"></ion-icon>
-      <ion-input  name='nom' [(ngModel)]="info.user" placeholder="username" type="text"required></ion-input>
+      <ion-input  name='nom' [(ngModel)]="user.email" placeholder="username" type="text" required></ion-input>
     </ion-item>
     <ion-item class="input">
       <ion-icon name="lock-closed-sharp"></ion-icon>
-      <ion-input  name='password' [(ngModel)]="info.pass" placeholder="password" type="password" required="true" ></ion-input>
+      <ion-input  name='password' [(ngModel)]="user.password" placeholder="password" type="password" required="true" ></ion-input>
     </ion-item>
+    </form>
+    <ion-button type="submit" (click)="onSubmit(user)" expand="block" color="success" shape="round" size="large" round>connection</ion-button>
     
-    <ion-button (click)="add(info)" expand="block" color="success" shape="round" size="large" round>connection</ion-button>
+
   </div>
      
 </div>

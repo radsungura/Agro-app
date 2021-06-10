@@ -16,14 +16,16 @@
   <div>
     <ion-item class="input" style="background: whitesmoke;" >
       <ion-icon name="person"></ion-icon>
-      <ion-input  name='nom' [(ngModel)]="log.user" placeholder="username" type="text"required></ion-input>
+      <ion-input  name='nom' [(ngModel)]="log.email" placeholder="username" type="text"required></ion-input>
     </ion-item>
     <ion-item class="input">
       <ion-icon name="lock-closed-sharp"></ion-icon>
-      <ion-input  name='password' [(ngModel)]="log.pass" placeholder="password" type="password" required="true" ></ion-input>
+      <ion-input  name='password' [(ngModel)]="log.password" placeholder="password" type="password" required="true" ></ion-input>
     {{res}}</ion-item>
     
-    <ion-button (click)="add(log)" expand="block" color="success" shape="round" size="large" round>connection</ion-button>
+    <ion-button (click)="onSubmit(log)" expand="block" color="success" shape="round" size="large" round>connection</ion-button>
+    <ion-button (click)="firebaseAuthService.googlelogin()" expand="block" color="primary" shape="round" size="large" round>gooogle login</ion-button>
+  
   </div>
 </div>
 </form>

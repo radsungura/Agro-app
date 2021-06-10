@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/listprod',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'folder/:id',
@@ -13,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
+    canActivate: [LoginGuard]
   },
   {
     path: 'addprod',
@@ -21,11 +24,16 @@ const routes: Routes = [
   },
   {
     path: 'listprod',
-    loadChildren: () => import('./listprod/listprod.module').then( m => m.ListprodPageModule)
+    loadChildren: () => import('./listprod/listprod.module').then( m => m.ListprodPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'profil',
+    loadChildren: () => import('./profil/profil.module').then( m => m.ProfilPageModule)
   },
   
 ];

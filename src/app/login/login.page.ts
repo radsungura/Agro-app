@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, NavParams } from '@ionic/angular';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseAuthService } from '../services/firebase-auth.service';
+import firebase from "firebase/app";
+import "firebase/auth";
 
 @Component({
   selector: 'app-login',
@@ -13,8 +16,12 @@ export class LoginPage implements OnInit {
   log: any;
   inf: any;
   users: any;
+  user = null;
 
-  constructor(public afAuth: AngularFireAuthModule , public afDB: AngularFireDatabase, private router: Router, public navCtrl: NavController  ){
+  constructor(public fireAuth: AngularFireAuth, public firebaseAuthService: FirebaseAuthService, public afAuth: AngularFireAuthModule , public afDB: AngularFireDatabase, private router: Router, public navCtrl: NavController  ){
+    this.fireAuth.authState.subscribe((user) => {
+      this.user = user ? user : null;
+    }),
     this.log = {},
     this.inf = {}
     }
@@ -34,10 +41,15 @@ export class LoginPage implements OnInit {
   
       })
       }
-      show(log){
-        const res = this.log;
+      onSubmit(log) {
+        if (log) {
+          console.log(log);
+          this.firebaseAuthService.login(
+            log.email,
+            log.password
+          );
         }
-        
+      }
 ngOnInit(){
   }
 

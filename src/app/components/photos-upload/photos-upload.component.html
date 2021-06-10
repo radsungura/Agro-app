@@ -1,0 +1,13 @@
+<div>
+  <form method="post" enctype="multipart/form-data">
+    <div>
+      <div><b>Upload photo</b><br>
+        <input type="file" (change)="uploadPhoto($event)" accept=".png,.jpg,.mp4,.mp3" />
+      </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="barStatus">
+  Uploading......
+</div>
+<app-photos-list [imageUploads]="imageUploads"></app-photos-list>
